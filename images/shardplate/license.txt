@@ -1,0 +1,11 @@
+Model Information:
+* title:	Shardplate
+* source:	https://sketchfab.com/3d-models/shardplate-5a4fca1f665b469c9669f387aa879b34
+* author:	Krajkoa (https://sketchfab.com/Krajkoa)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Shardplate" (https://sketchfab.com/3d-models/shardplate-5a4fca1f665b469c9669f387aa879b34) by Krajkoa (https://sketchfab.com/Krajkoa) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

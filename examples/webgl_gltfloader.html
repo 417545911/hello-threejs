@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.162.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.162.0/examples/jsm/"
+        }
+      }
+    </script>
+  </body>
+</html>
+
+<script type="module">
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+  let camera, scene, renderer;
+
+  const WIDTH = document.body.clientWidth;
+  const HEIGHT = window.innerHeight;
+
+  camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 0.01, 10000);
+  camera.position.set(0, 0, 2);
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color("#fff");
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(WIDTH, HEIGHT);
+  document.body.appendChild(renderer.domElement);
+
+  // 放大旋转
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.addEventListener("change", render);
+  controls.minDistance = 2;
+  controls.maxDistance = 10000;
+  controls.target.set(0, 0, -0.2);
+  controls.update();
+
+  // 辅助
+  const axesHelper = new THREE.AxesHelper(1);
+  scene.add(axesHelper);
+  const gridHelper = new THREE.GridHelper(10, 10);
+  scene.add(gridHelper);
+
+  const loader = new GLTFLoader();
+  loader.load(
+    "../images/scene.gltf",
+    function (gltf) {
+      const model = gltf.scene;
+      scene.add(model);
+
+      // 添加光源
+      const light1 = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(light1);
+
+      const light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light2.position.set(0, 1, 0);
+      scene.add(light2);
+      const light3 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light3.position.set(0, 1, 1);
+      scene.add(light3);
+      const light4 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light4.position.set(1, 1, 1);
+      scene.add(light4);
+      const light5 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light5.position.set(-1, 1, 1);
+      scene.add(light5);
+      const light6 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light6.position.set(-2, -2, 2);
+      scene.add(light6);
+
+      // 设置模型的材质
+      model.traverse((child) => {
+        if (child.isMesh) {
+          //   child.material.metalness = 0.5;
+          //   child.material.roughness = 0.5;
+        }
+      });
+    },
+    function (xhr) {
+      //侦听模型加载进度
+      console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    },
+    function (error) {
+      //加载出错时的回调
+      console.log("An error happened");
+    }
+  );
+  loader.load(
+    "../images/anime_base_mesh_f_rhine7/scene.gltf",
+    function (gltf) {
+      const model = gltf.scene;
+      model.position.set(2, 2, 2);
+      scene.add(model);
+
+      // 添加光源
+      const light1 = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(light1);
+
+      const light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light2.position.set(0, 1, 0);
+      scene.add(light2);
+      const light3 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light3.position.set(0, 1, 1);
+      scene.add(light3);
+      const light4 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light4.position.set(1, 1, 1);
+      scene.add(light4);
+      const light5 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light5.position.set(-1, 1, 1);
+      scene.add(light5);
+      const light6 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light6.position.set(-2, -2, 2);
+      scene.add(light6);
+    },
+    function (xhr) {
+      //侦听模型加载进度
+      console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    },
+    function (error) {
+      //加载出错时的回调
+      console.log("An error happened");
+    }
+  );
+  loader.load(
+    "../images/shardplate/scene.gltf",
+    function (gltf) {
+      const model = gltf.scene;
+      model.position.set(0, 0, 1);
+      scene.add(model);
+
+      // 添加光源
+      const light1 = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(light1);
+
+      const light2 = new THREE.DirectionalLight(0xffffff, 1);
+      light2.position.set(0, 10000, 0);
+      scene.add(light2);
+      const light3 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light3.position.set(0, 1, 1);
+      scene.add(light3);
+      const light4 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light4.position.set(1, 1, 1);
+      scene.add(light4);
+      const light5 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light5.position.set(-1, 1, 1);
+      scene.add(light5);
+      const light6 = new THREE.DirectionalLight(0xffffff, 0.5);
+      light6.position.set(-2, -2, 2);
+      scene.add(light6);
+    },
+    function (xhr) {
+      //侦听模型加载进度
+      console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    },
+    function (error) {
+      //加载出错时的回调
+      console.log("An error happened");
+    }
+  );
+
+  function loop() {
+    requestAnimationFrame(loop);
+    render();
+  }
+  loop();
+
+  function render() {
+    renderer.render(scene, camera);
+  }
+</script>
